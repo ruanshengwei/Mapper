@@ -28,6 +28,8 @@ import org.apache.ibatis.annotations.SelectProvider;
 import tk.mybatis.mapper.annotation.RegisterMapper;
 import tk.mybatis.mapper.provider.base.BaseSelectProvider;
 
+import java.util.Optional;
+
 /**
  * 通用Mapper接口,其他接口继承该接口即可
  * <p/>
@@ -48,6 +50,6 @@ public interface SelectByPrimaryKeyMapper<T> {
      * @return
      */
     @SelectProvider(type = BaseSelectProvider.class, method = "dynamicSQL")
-    T selectByPrimaryKey(Object key);
+    Optional<T> selectByPrimaryKey(Object key);
 
 }

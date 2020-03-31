@@ -36,6 +36,7 @@ import tk.mybatis.mapper.common.base.select.*;
 @RegisterMapper
 public interface BaseSelectMapper<T> extends
         SelectOneMapper<T>,
+        SelectOneOptionalMapper<T>,
         SelectMapper<T>,
         SelectAllMapper<T>,
         SelectCountMapper<T>,

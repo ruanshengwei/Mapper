@@ -40,6 +40,16 @@ public class BaseSelectProvider extends MapperTemplate {
         super(mapperClass, mapperHelper);
     }
 
+    public String selectOptional(MappedStatement ms) {
+        final Class<?> entityClass = getEntityClass(ms);
+        //将返回值修改为实体类型
+        setResultType(ms, entityClass);
+        StringBuilder sql = new StringBuilder();
+        sql.append(SqlHelper.selectAllColumns(entityClass));
+        sql.append(SqlHelper.fromTable(entityClass, tableName(entityClass)));
+        sql.append(SqlHelper.wherePKColumns(entityClass));
+        return sql.toString();
+    }
     /**
      * 查询
      *
@@ -54,6 +64,7 @@ public class BaseSelectProvider extends MapperTemplate {
         sql.append(SqlHelper.selectAllColumns(entityClass));
         sql.append(SqlHelper.fromTable(entityClass, tableName(entityClass)));
         sql.append(SqlHelper.whereAllIfColumns(entityClass, isNotEmpty()));
+        System.out.println("ruanshengwei");
         return sql.toString();
     }
 
